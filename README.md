@@ -1,4 +1,4 @@
-# DREAm-Dual-perspective-Reasoning-and-Attribution-based-Refinement-for-Conversational-Query-Rewriting
+# DREAm: Dual-perspective Reasoning and Attribution-based Refinement for Conversational Query Rewriting
 
 ## Installation
 
