@@ -5,6 +5,11 @@
 ## Installation
 
 ## Data Processing
+Download the passage collection
+
+Two public datasets can be download from [QReCC]([url](https://github.com/apple/ml-qrecc)), [TopiOCQA]([url](https://github.com/McGill-NLP/topiocqa)),
+We mainly evaluate our method using two types of retrievers: BM25 and ANCE on two Conversational QA benchmarks: TopiOCQA and QReCC.
+
 
 ## Training
 
