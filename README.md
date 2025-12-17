@@ -1,6 +1,7 @@
 # DREAm: Dual-perspective Reasoning and Attribution-based Refinement for Conversational Query Rewriting
 
 <img width="1515" height="1056" alt="image" src="https://github.com/user-attachments/assets/59dd401b-1205-4c4b-9d08-398f44bb0ef9" />
+<img width="1515" height="1056" alt="image" src="/DREAm/assets/framework.jpg" />
 
 ## Installation
 
@@ -43,4 +44,6 @@ using Pruner, trained on original (non-pruned) dataset.
 
 3. 全流程执行
 直接执行 `train_infer_eval.sh`
+
+## Acknowledgments
 
