@@ -134,5 +134,5 @@ We appreciate the open-source contributions from the following projects:
 
 - [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
 - [(*EMNLP 2024*) CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search](https://github.com/fengranMark/CHIQ)
-- [ConvGQR](https://github.com/fengranMark/ConvGQR)
-- [cs-shortcut](https://github.com/naver-ai/cs-shortcut)
+- [(*ACL 2023*) ConvGQR: Generative Query Reformulation for Conversational Search](https://github.com/fengranMark/ConvGQR)
+- [(*EMNLP 2022*) Saving Dense Retriever from Shortcut Dependency in Conversational Search](https://github.com/naver-ai/cs-shortcut)
