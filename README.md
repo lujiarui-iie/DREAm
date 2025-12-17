@@ -15,14 +15,20 @@ We mainly evaluate our method using two types of retrievers: BM25 and ANCE on tw
 
 2. 得到 bm25 和 dense
 为了得到 bm25 和 dense 检索库，需要分别执行 `./index/preprocess/bm25` 和 `./index/preprocess/dense` 来构造。
+下载 `./index/ad-hoc-ance-msmarco`：https://huggingface.co/3ricL/ad-hoc-ance-msmarco/tree/main
+下载 `./index/ance_checkpoint`：https://drive.google.com/drive/folders/13jKyMtpfg1nThOAZT3mSCCMXu95QK5GT?usp=sharing
 
 
 ## Training
 
 1. Data Preparing
-下载统一处理过格式的 train dataset 和 test dataset：
-`https://drive.google.com/drive/folders/1fFWixFDgrxwzyftlX34I7MnkbrpmcXJs?usp=sharing`
+下载统一处理过格式的 （qrecc 和 topiocqa）train dataset 和 test dataset：
+`https://drive.google.com/drive/folders/1fFWixFDgrxwzyftlX34I7MnkbrpmcXJs?usp=sharing` 到 `./dataset`
+
+下载 deepseek 生成的思考过程和重写：https://drive.google.com/drive/folders/1UYq2bZRoA_Jl_VuAqBqtVFPcseDcEGuO?usp=sharing 到 `./code/think_data`
+
 执行 `./code/data_processing/convert_lf_format.py` 转换为 LF 支持的训练格式。
+
 修改 LLaMA-Factory 的 dataset_info.json 内容
 
 
@@ -46,3 +52,7 @@ using Pruner, trained on original (non-pruned) dataset.
 
 ## Acknowledgments
 
+LLaMA-Factory：https://github.com/hiyouga/LLaMA-Factory
+CHIQ：https://github.com/fengranMark/CHIQ
+ConvGQR：https://github.com/fengranMark/ConvGQR
+cs-shortcut：https://github.com/naver-ai/cs-shortcut
