@@ -29,8 +29,8 @@ pip install -e .
 
 Download the raw datasets (including passage collections) from their respective repositories:
 
-- [QReCC]([url](https://github.com/apple/ml-qrecc))
-- [TopiOCQA]([url](https://github.com/McGill-NLP/topiocqa))
+- [QReCC](https://github.com/apple/ml-qrecc)
+- [TopiOCQA](https://github.com/McGill-NLP/topiocqa)
 
 
 进入 `./index/preprocess/qrecc` 和 `./index/preprocess/topiocqa` 分别下载 qrecc 和 topiocqa 的相关数据（包括 passage 等），然后用 processing.py 处理。
@@ -123,7 +123,7 @@ bash train_infer_eval.sh
 
 We appreciate the open-source contributions from the following projects:
 
-- [LLaMA-Factory]([url](https://github.com/hiyouga/LLaMA-Factory))
-- [(*EMNLP 2024*) CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search]([url](https://github.com/fengranMark/CHIQ))
-- [ConvGQR]([url](https://github.com/fengranMark/ConvGQR))
-- [cs-shortcut]([url](https://github.com/naver-ai/cs-shortcut))
+- [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory)
+- [(*EMNLP 2024*) CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search](https://github.com/fengranMark/CHIQ)
+- [ConvGQR](https://github.com/fengranMark/ConvGQR)
+- [cs-shortcut](https://github.com/naver-ai/cs-shortcut)
