@@ -2,7 +2,26 @@
 
 <img width="1515" height="1056" alt="image" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/framework.jpg" />
 
-## Installation
+## 📖 Introduction
+This repository contains the implementation of **DREAm** (*Dual-perspective Reasoning and Attribution-based Refinement*). We evaluate our method using two types of retrievers (BM25 and ANCE) on two Conversational QA benchmarks: **TopiOCQA** and **QReCC**.
+
+## ⚙️ Installation
+
+Create a virtual environment and install the required dependencies.
+
+```bash
+conda create -n dream python==3.8
+conda activate dream
+
+# Install main packages
+pip install torch==1.8.1 transformers==4.2.0 
+pip install numpy==1.22 
+pip install faiss-gpu==1.7.2 pyserini==0.16
+
+# Install LLaMA-Factory
+cd ./code/LLaMA-Factory
+pip install -e .
+```
 
 ## Data Pre-Processing
 
@@ -39,20 +58,41 @@ using Pruner, trained on original (non-pruned) dataset.
 3. SFT
 `./code/train_eval/train_sft.sh`
 
-## Inference
+## 🔎 Inference & Evaluation
 
-1. inference
-`./code/train_eval/infer.py`
+1. Inference
 
-2. evaluation
-分别执行 `./code/train_eval/search_sparse.py` 和 `./code/train_eval/search_dense.py` 进行检索，得到对应的分数。
+Generate rewrites using the trained model:
 
-3. 全流程执行
-直接执行 `train_infer_eval.sh`
+```bash
+python ./code/train_eval/infer.py
+```
 
-## Acknowledgments
+2. Evaluation
 
-LLaMA-Factory：https://github.com/hiyouga/LLaMA-Factory
-CHIQ：https://github.com/fengranMark/CHIQ
-ConvGQR：https://github.com/fengranMark/ConvGQR
-cs-shortcut：https://github.com/naver-ai/cs-shortcut
+Evaluate retrieval performance using Sparse (BM25) or Dense (ANCE) retrieval:
+
+```bash
+# Sparse Retrieval Evaluation
+python ./code/train_eval/search_sparse.py
+
+# Dense Retrieval Evaluation
+python ./code/train_eval/search_dense.py
+```
+
+3. All-in-One Script
+
+To run the entire pipeline (Training -> Inference -> Evaluation):
+
+```bash
+bash train_infer_eval.sh
+```
+
+## 🤝 Acknowledgments
+
+We appreciate the open-source contributions from the following projects:
+
+- [LLaMA-Factory]([url](https://github.com/hiyouga/LLaMA-Factory))
+- [CHIQ]([url](https://github.com/fengranMark/CHIQ))
+- [ConvGQR]([url](https://github.com/fengranMark/ConvGQR))
+- [cs-shortcut]([url](https://github.com/naver-ai/cs-shortcut))
