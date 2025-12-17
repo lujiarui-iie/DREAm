@@ -3,7 +3,7 @@
 <img width="1515" height="1056" alt="image" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/framework.jpg" />
 
 ## 📖 Introduction
-This repository contains the implementation of **DREAm** (*Dual-perspective Reasoning and Attribution-based Refinement*). We evaluate our method using two types of retrievers (BM25 and ANCE) on two Conversational QA benchmarks: **TopiOCQA** and **QReCC**.
+This repository contains the implementation of **DREAm** (*Dual-perspective Reasoning and Attribution-based Refinement*). We propose a method for Conversational Query Rewriting that leverages dual-perspective reasoning and attribution-based refinement. The method is evaluated on **QReCC** and **TopiOCQA** benchmarks using both **sparse (BM25)** and **dense (ANCE)** retrievers.
 
 ## ⚙️ Installation
 
@@ -23,44 +23,75 @@ cd ./code/LLaMA-Factory
 pip install -e .
 ```
 
-## Data Pre-Processing
+## 📂 Data Preparation
 
-1. Download the passage collection
+#### Passage Collection
 
-Two public datasets can be download from [QReCC]([url](https://github.com/apple/ml-qrecc)), [TopiOCQA]([url](https://github.com/McGill-NLP/topiocqa)),
-We mainly evaluate our method using two types of retrievers: BM25 and ANCE on two Conversational QA benchmarks: TopiOCQA and QReCC.
+Download the raw datasets (including passage collections) from their respective repositories:
+
+- [QReCC]([url](https://github.com/apple/ml-qrecc))
+- [TopiOCQA]([url](https://github.com/McGill-NLP/topiocqa))
+
 
 进入 `./index/preprocess/qrecc` 和 `./index/preprocess/topiocqa` 分别下载 qrecc 和 topiocqa 的相关数据（包括 passage 等），然后用 processing.py 处理。
 
-2. 得到 bm25 和 dense
+```bash
+# For qrecc dataset
+python ./index/preprocess/qrecc/qrecc_processing.py
+
+# For topiocqa dataset
+python ./index/preprocess/topiocqa/topiocqa_processing.py
+```
+
+#### Retrieval Indices Construction
+
+To construct the retrieval indices, follow these steps:
+
 为了得到 bm25 和 dense 检索库，需要分别执行 `./index/preprocess/bm25` 和 `./index/preprocess/dense` 来构造。
+保存到对应的文件夹 `./index/{retrieval_type}_{dataset_name}`中
+
+除此之外，对于 dense 还需要下载：
 下载 `./index/ad-hoc-ance-msmarco`：https://huggingface.co/3ricL/ad-hoc-ance-msmarco/tree/main
 下载 `./index/ance_checkpoint`：https://drive.google.com/drive/folders/13jKyMtpfg1nThOAZT3mSCCMXu95QK5GT?usp=sharing
 
 
-## Training
+## 🚀 Training
 
-1. Data Preparing
+#### Data Preparing
 下载统一处理过格式的 （qrecc 和 topiocqa）train dataset 和 test dataset：
 `https://drive.google.com/drive/folders/1fFWixFDgrxwzyftlX34I7MnkbrpmcXJs?usp=sharing` 到 `./dataset`
 
 下载 deepseek 生成的思考过程和重写：https://drive.google.com/drive/folders/1UYq2bZRoA_Jl_VuAqBqtVFPcseDcEGuO?usp=sharing 到 `./code/think_data`
 
-执行 `./code/data_processing/convert_lf_format.py` 转换为 LF 支持的训练格式。
 
-修改 LLaMA-Factory 的 dataset_info.json 内容
+Convert the data to the format supported by LLaMA-Factory:
 
+```bash
+python ./code/data_processing/convert_lf_format.py
+```
 
-2. Pruning
-每次剪枝需要执行 `./utils/get_keyword.py` 和 `./utils/pruning.py`
-using Pruner, trained on original (non-pruned) dataset.
+Note: You need to manually update `dataset_info.json` in the `LLaMA-Factory` directory to register the new datasets.
 
-3. SFT
-`./code/train_eval/train_sft.sh`
+#### Pruning
+
+Run the pruning process using the Pruner trained on the original dataset:
+
+```bash
+python ./utils/get_keyword.py
+python ./utils/pruning.py
+```
+
+#### SFT
+
+Start the training process:
+
+```bash
+bash ./code/train_eval/train_sft.sh
+```
 
 ## 🔎 Inference & Evaluation
 
-1. Inference
+#### Inference
 
 Generate rewrites using the trained model:
 
@@ -68,7 +99,7 @@ Generate rewrites using the trained model:
 python ./code/train_eval/infer.py
 ```
 
-2. Evaluation
+#### Evaluation
 
 Evaluate retrieval performance using Sparse (BM25) or Dense (ANCE) retrieval:
 
@@ -80,7 +111,7 @@ python ./code/train_eval/search_sparse.py
 python ./code/train_eval/search_dense.py
 ```
 
-3. All-in-One Script
+#### All-in-One Script
 
 To run the entire pipeline (Training -> Inference -> Evaluation):
 
@@ -93,6 +124,6 @@ bash train_infer_eval.sh
 We appreciate the open-source contributions from the following projects:
 
 - [LLaMA-Factory]([url](https://github.com/hiyouga/LLaMA-Factory))
-- [CHIQ]([url](https://github.com/fengranMark/CHIQ))
+- [(*EMNLP 2024*) CHIQ: Contextual History Enhancement for Improving Query Rewriting in Conversational Search]([url](https://github.com/fengranMark/CHIQ))
 - [ConvGQR]([url](https://github.com/fengranMark/ConvGQR))
 - [cs-shortcut]([url](https://github.com/naver-ai/cs-shortcut))
