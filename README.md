@@ -27,13 +27,13 @@ pip install -e .
 
 #### Passage Collection
 
-Download the raw datasets (including passage collections) from their respective repositories:
+Download the raw datasets (including passages) from their respective repositories:
 
 - [QReCC](https://github.com/apple/ml-qrecc)
 - [TopiOCQA](https://github.com/McGill-NLP/topiocqa)
 
 
-进入 `./index/preprocess/qrecc` 和 `./index/preprocess/topiocqa` 分别下载 qrecc 和 topiocqa 的相关数据（包括 passage 等），然后用 processing.py 处理。
+Process the raw datasets:
 
 ```bash
 # For qrecc dataset
@@ -43,26 +43,35 @@ python ./index/preprocess/qrecc/qrecc_processing.py
 python ./index/preprocess/topiocqa/topiocqa_processing.py
 ```
 
-#### Retrieval Indices Construction
+#### Index Construction
 
-To construct the retrieval indices, follow these steps:
+Run the following scripts to build the BM25 and Dense retrieval indices:
 
-为了得到 bm25 和 dense 检索库，需要分别执行 `./index/preprocess/bm25` 和 `./index/preprocess/dense` 来构造。
-保存到对应的文件夹 `./index/{retrieval_type}_{dataset_name}`中
+```bash
+# Sparse Retrieval
+bash ./index/preprocess/bm25/create_index.sh
 
-除此之外，对于 dense 还需要下载：
-下载 `./index/ad-hoc-ance-msmarco`：https://huggingface.co/3ricL/ad-hoc-ance-msmarco/tree/main
-下载 `./index/ance_checkpoint`：https://drive.google.com/drive/folders/13jKyMtpfg1nThOAZT3mSCCMXu95QK5GT?usp=sharing
+# Dense Retrieval
+bash ./index/preprocess/dense/distributed_index.sh
+```
 
+The output should be saved to `./index/{retrieval_type}_{dataset_name}`.
+
+For Dense retrieval, you must download the following checkpoints and place them in `./index/ance_checkpoint/Passage_ANCE_FirstP_Checkpoint` before index construction:
+
+```bash
+# pip install huggingface_hub
+huggingface-cli download 3ricL/ad-hoc-ance-msmarco --local-dir ./index/ance_checkpoint/Passage_ANCE_FirstP_Checkpoint --local-dir-use-symlinks False
+```
 
 ## 🚀 Training
 
-#### Data Preparing
-下载统一处理过格式的 （qrecc 和 topiocqa）train dataset 和 test dataset：
-`https://drive.google.com/drive/folders/1fFWixFDgrxwzyftlX34I7MnkbrpmcXJs?usp=sharing` 到 `./dataset`
+#### Data Setup
 
-下载 deepseek 生成的思考过程和重写：https://drive.google.com/drive/folders/1UYq2bZRoA_Jl_VuAqBqtVFPcseDcEGuO?usp=sharing 到 `./code/think_data`
+Download the required datasets and auxiliary data, then organize them as follows:
 
+- Standardized Datasets: Download the preprocessed train/test sets for QReCC and TopiOCQA from [HERE](https://drive.google.com/drive/folders/1fFWixFDgrxwzyftlX34I7MnkbrpmcXJs?usp=sharing) and place them in `./dataset/{dataset_name}`.
+- Reasoning Data: Download the DeepSeek-generated reasoning processing and rewrites from [HERE](https://drive.google.com/drive/folders/1UYq2bZRoA_Jl_VuAqBqtVFPcseDcEGuO?usp=sharing) and place them in `./code/think_data`.
 
 Convert the data to the format supported by LLaMA-Factory:
 
