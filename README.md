@@ -90,7 +90,7 @@ python ./utils/get_keyword.py
 python ./utils/pruning.py
 ```
 
-#### SFT
+#### Supervised Fine-Tuning
 
 Start the training process:
 
