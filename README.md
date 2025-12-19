@@ -5,13 +5,11 @@
 ## 📖 Introduction
 This repository contains the implementation of **DREAm** (*Dual-perspective Reasoning and Attribution-based Refinement*). We propose a method for Conversational Query Rewriting that leverages dual-perspective reasoning and attribution-based refinement. The method is evaluated on **QReCC** and **TopiOCQA** benchmarks using both **sparse (BM25)** and **dense (ANCE)** retrievers.
 
-The core of DREAm is the **Attribution-based Iterative Reasoning-Rewrite Refinement (AIR3)** algorithm. It aligns the reasoning rewrite model with the retriever by leveraging passage feedback to iteratively prune noisy and redundant reasoning paths.
-
 ## 🧠 AIR3 Algorithm
 
 The core of DREAm is the **Attribution-based Iterative Reasoning-Rewrite Refinement (AIR3)** algorithm. It aligns the reasoning rewrite model with the retriever by leveraging passage feedback and rank feedback to iteratively prune noisy and redundant reasoning paths.
 
-<img alt="AIR3 Algorithm Pseudocode" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pseudocode.jpg" />
+<img alt="AIR3 Algorithm Pseudocode" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pseudocode.png" />
 
 
 ## ⚙️ Installation
