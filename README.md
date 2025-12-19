@@ -139,7 +139,7 @@ bash train_infer_eval.sh
 
 #### Main Results
 
-Our experiments demonstrate DREAm's robust generalizability across multiple dimensions. We validate the framework using two distinct backbone models (Llama and Qwen) and two types of retrievers (sparse BM25 and dense ANCE) on both QReCC and TopiOCQA benchmarks.
+Our experiments demonstrate DREAm's generalizability across multiple dimensions. We validate the framework using two distinct backbone models (Llama and Qwen) and two types of retrievers (sparse BM25 and dense ANCE) on both QReCC and TopiOCQA benchmarks.
 
 <img width="1200" alt="Main Result" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/main_result.png" />
 
