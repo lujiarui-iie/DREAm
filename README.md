@@ -139,15 +139,21 @@ bash train_infer_eval.sh
 
 #### Main Results
 
+Our experiments demonstrate DREAm's robust generalizability across multiple dimensions. We validate the framework using two distinct backbone models (Llama and Qwen) and two types of retrievers (sparse BM25 and dense ANCE) on both QReCC and TopiOCQA benchmarks.
+
 <img width="1200" alt="Main Result" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/main_result.png" />
 
 #### Ablation Studies
 
-<img width="1200" alt="Main Result" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/vanilla_ablation.png" />
+We conducted comprehensive ablation experiments to verify our core contributions: the dual-perspective reasoning and the pruning strategy. Ablating each perspective reveals that historical context enrichment and intent exploration are mutually reinforcing, demonstrating that both are indispensable for achieving optimal retrieval alignment. Furthermore, regarding different pruning strategies, we experimented with various static pruning iteration counts and dynamic pruning algorithms. These results highlight the necessity of retrieval rank feedback for effective refinement.
 
-<img width="1200" alt="Pruning Strategy Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_strategy.png" />
+<img width="500" alt="Vanilla Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/vanilla_ablation.png" />
 
-<img width="1200" alt="Pruning Strategy Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_score_calculation.jpg" />
+<img width="500" alt="Pruning Strategy Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_strategy.png" />
+
+We investigate different aggregation strategies for converting attention weights into pruning scores, both across attention heads (for token scores) and across tokens (for sentence scores). These experiments are performed on the TopiOCQA dataset using BM25 for retrieval, with Llama3.2-3b-Instruct serving as the backbone model."
+
+<img width="500" alt="Pruning Score Calculation Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_score_calculation.jpg" />
 
 
 ## 🤝 Acknowledgments
