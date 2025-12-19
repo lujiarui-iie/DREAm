@@ -1,6 +1,6 @@
 # DREAm: Dual-perspective Reasoning and Attribution-based Refinement for Conversational Query Rewriting
 
-<img width="1515" height="1056" alt="DREAm Framework" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/framework.jpg" />
+<img width="1515" alt="DREAm Framework" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/framework.jpg" />
 
 ## 📖 Introduction
 This repository contains the implementation of **DREAm** (*Dual-perspective Reasoning and Attribution-based Refinement*). We propose a method for Conversational Query Rewriting that leverages dual-perspective reasoning and attribution-based refinement. The method is evaluated on **QReCC** and **TopiOCQA** benchmarks using both **sparse (BM25)** and **dense (ANCE)** retrievers.
@@ -9,7 +9,7 @@ This repository contains the implementation of **DREAm** (*Dual-perspective Reas
 
 The core of DREAm is the **Attribution-based Iterative Reasoning-Rewrite Refinement (AIR3)** algorithm. It aligns the reasoning rewrite model with the retriever by leveraging passage feedback and rank feedback to iteratively prune noisy and redundant reasoning paths.
 
-<img alt="AIR3 Algorithm Pseudocode" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pseudocode.png" />
+<img width="1200" alt="AIR3 Algorithm Pseudocode" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pseudocode.png" />
 
 
 ## ⚙️ Installation
@@ -135,14 +135,19 @@ To run the entire pipeline (Training -> Inference -> Evaluation):
 bash train_infer_eval.sh
 ```
 
-## 📊 
+## 📊 Experiments
 
 #### Main Results
 
+<img width="1200" alt="Main Result" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/main_result.png" />
 
 #### Ablation Studies
 
+<img width="1200" alt="Main Result" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/vanilla_ablation.png" />
 
+<img width="1200" alt="Pruning Strategy Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_strategy.png" />
+
+<img width="1200" alt="Pruning Strategy Ablation" src="https://github.com/lujiarui-iie/DREAm/blob/main/assets/pruning_score_calculation.jpg" />
 
 
 ## 🤝 Acknowledgments
